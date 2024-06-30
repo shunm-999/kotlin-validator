@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "kotlin-validator"
 include(":app")
 include(":validator")
+include(":validator-gpt")
