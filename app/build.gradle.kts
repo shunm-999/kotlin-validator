@@ -51,7 +51,7 @@ android {
 
 dependencies {
 
-    implementation(project(":validator"))
+    implementation(project(":validator-gpt"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
