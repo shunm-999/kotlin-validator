@@ -1,4 +1,3 @@
 package com.shunm.validator
 
-sealed interface ValidationError {
-}
+data class ValidationError(val errorMessage: String)
