@@ -47,7 +47,7 @@ private sealed interface FieldValidator {
         }
     }
 
-    fun validator(errorMessage: String, predicate: () -> Boolean) {
+    fun rule(errorMessage: String, predicate: () -> Boolean) {
         rules.add {
             if (predicate()) {
                 ValidationResult.Success
@@ -65,19 +65,19 @@ class NumberFieldValidator(private val value : Number) : FieldValidator {
     override val rules: MutableList<() -> ValidationResult> = mutableListOf()
 
     fun greaterThan(number: Number, errorMessage: String) {
-        validator(errorMessage) {
+        rule(errorMessage) {
             value.toDouble() > number.toDouble()
         }
     }
 
     fun lessThan(number: Number, errorMessage: String) {
-        validator(errorMessage) {
+        rule(errorMessage) {
             value.toDouble() < number.toDouble()
         }
     }
 
     fun equalTo(number: Number, errorMessage: String) {
-        validator(errorMessage) {
+        rule(errorMessage) {
             value.toDouble() == number.toDouble()
         }
     }
@@ -91,37 +91,37 @@ class StringFieldValidator(private val value: String) : FieldValidator {
     override val rules: MutableList<() -> ValidationResult> = mutableListOf()
 
     fun notEmpty(errorMessage: String) {
-        validator(errorMessage) {
+        rule(errorMessage) {
             value.isNotEmpty()
         }
     }
 
     fun minLength(minLength: Int, errorMessage: String) {
-        validator(errorMessage) {
+        rule(errorMessage) {
             value.length >= minLength
         }
     }
 
     fun maxLength(maxLength: Int, errorMessage: String) {
-        validator(errorMessage) {
+        rule(errorMessage) {
             value.length <= maxLength
         }
     }
 
     fun matches(regex: String, errorMessage: String) {
-        validator(errorMessage) {
+        rule(errorMessage) {
             value.matches(regex.toRegex())
         }
     }
 
     fun matches(regex: Regex, errorMessage: String) {
-        validator(errorMessage) {
+        rule(errorMessage) {
             value.matches(regex)
         }
     }
 
     fun email(errorMessage: String) {
-        validator(errorMessage) {
+        rule(errorMessage) {
             value.matches(EMAIL_REGEX)
         }
     }
